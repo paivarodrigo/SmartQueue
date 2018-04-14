@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Configurações
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="settings-page">
+    <div>
+        <div class="options">
+            <div class="options-item">
+                <button ion-button color="settings" inline large (click)="changePassword()">
+                    <span>Alterar Senha</span>
+                </button>
+            </div>
+            <div class="options-item">
+                <button ion-button color="settings" inline large (click)="about()">
+                    <span>Sobre</span>
+                </button>
+            </div>
+            <div class="options-item">
+                <button ion-button color="settings" inline large (click)="logout()">
+                    <span>Sair</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>

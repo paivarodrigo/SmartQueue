@@ -1,0 +1,32 @@
+<ion-content padding id="login-page">
+    <div>
+      <img src="assets/imgs/UmQxtnPPRUSidLkXAzI0_logo.png" class="logo" />
+    </div>
+    <div>
+      <div>
+        <form>
+          <ion-item>
+            <ion-label>
+              Email:
+            </ion-label>
+            <ion-input [value]="email" [(ngModel)]="email" type="text" name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Senha:
+            </ion-label>
+            <ion-input [value]="password" [(ngModel)]="password" type="password" name="password"></ion-input>
+          </ion-item>
+          <button ion-button color="positive" block (click)="login()" class="option">
+            Entrar
+          </button>
+        </form>
+      </div>
+      <div class="option">
+        <a (click)="forgotPassword()">Esqueci minha senha</a>
+      </div>
+      <div class="option">
+        <a (click)="signIn()">Você é novo? Cadastre-se</a>
+      </div>
+    </div>
+  </ion-content>

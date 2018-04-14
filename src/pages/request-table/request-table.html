@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Solicitar Mesa
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content id="request-table-page">
+    <div class="center-box" style="margin-top: 25%;">
+        <h3>Quantidade de Assentos</h3>
+        <div class="row center-box">
+            <ion-icon color="primary" name="remove-circle" (click)="increaseSeats(false)"></ion-icon>
+            <span class="seats">{{numberOfSeats}}</span>
+            <ion-icon color="primary" name="add-circle" (click)="increaseSeats(true)"></ion-icon>
+        </div>
+        <div class="row center-box">
+            <button ion-button color="primary" (click)="request()">OK</button>
+        </div>
+    </div>
+</ion-content>

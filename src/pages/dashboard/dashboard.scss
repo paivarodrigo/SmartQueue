@@ -1,0 +1,31 @@
+page-dashboard {
+    .menu-items {
+      align-items: center;
+      margin-top: 12.5%;
+    }
+  
+    .menu-items > div > button {
+      text-justify: auto;
+      text-decoration-style: none;
+      text-transform: none;
+      border-radius: 5%;
+    }
+  
+    .principal-item > button {
+      width: 100%;
+      height: 3.8em;
+    }
+  
+    .square-button-left {
+      width: 46.5%;
+      height: 5.8em;
+      float: left;
+    }
+  
+    .square-button-right {
+      width: 46.5%;
+      height: 5.8em;
+      float: right;
+    }
+  }
+  

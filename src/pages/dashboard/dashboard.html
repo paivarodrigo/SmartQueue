@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            Menu
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="dashboard-page">
+    <div>
+        <div class="menu-items">
+            <div class="principal-item">
+                <button ion-button color="request" inline large (click)="requestTable()">
+                    <span>Solicitar Mesa</span>
+                </button>
+            </div>
+            <div style="margin-top: 3.5%;">
+                <button ion-button color="card" inline large class="square-button-left">
+                    <span>Cardápio</span>
+                </button>
+                <button ion-button color="ranking" inline large class="square-button-right">
+                    <span>Ranking</span>
+                </button>
+            </div>
+            <div style="margin-top: 45%;">
+                <button ion-button color="history" inline large class="square-button-left">
+                    <span>Histórico</span>
+                </button>
+                <button ion-button color="settings" inline large class="square-button-right" (click)="settings()">
+                    <span>Configurações</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>
