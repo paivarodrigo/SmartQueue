@@ -1,0 +1,8 @@
+{
+  "name": "SmartQueue",
+  "app_id": "b1684387",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
