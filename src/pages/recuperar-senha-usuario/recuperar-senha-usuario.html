@@ -5,20 +5,20 @@
         </ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content padding id="forgot-password-page">
+<ion-content padding id="recuperar-senha-usuario-page">
     <div>
-        <div class="change-password-form">
+        <div class="recuperar-senha-form">
             <form>
                 <ion-item>
                     <ion-input [value]="cpf" [(ngModel)]="cpf" type="text" name="cpf" placeholder="CPF"></ion-input>
                 </ion-item>
-                <div class="row center-box">
+                <div class="row caixa-centro">
                     <span>OU</span>
                 </div>
                 <ion-item>
                     <ion-input [value]="email" [(ngModel)]="email" type="email" name="email" placeholder="E-mail"></ion-input>
                 </ion-item>
-                <button ion-button class="save-button" color="positive" block (click)="save()">
+                <button ion-button class="botao-salvar" color="positive" block (click)="salvar()">
                     Ok
                 </button>
             </form>

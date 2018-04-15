@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
-import { NavController, ToastController } from "ionic-angular";
-import { DashboardPage } from "../dashboard/dashboard";
-import { SignInPage } from "../sign-in/sign-in";
-import { ForgotPasswordPage } from "../forgot-password/forgot-password";
+import { NavController } from "ionic-angular";
+import { Toaster } from "../../assets/utils/Toaster";
+import { MenuPrincipalPage } from "../menu-principal/menu-principal";
+import { CadastrarUsuarioPage } from "../cadastrar-usuario/cadastrar-usuario";
+import { RecuperarSenhaUsuarioPage } from "../recuperar-senha-usuario/recuperar-senha-usuario";
 
 @Component({
   selector: "page-login",
@@ -10,44 +11,40 @@ import { ForgotPasswordPage } from "../forgot-password/forgot-password";
 })
 export class LoginPage {
   email: any;
-  password: any;
-  constructor(
-    public navCtrl: NavController,
-    private toastCtrl: ToastController
-  ) {}
+  senha: any;
+  constructor(public navCtrl: NavController, private toastCtrl: Toaster) {}
 
-  login() {
-    //APAGAR
-    this.navCtrl.push(DashboardPage);
-
-    // if (this.email != undefined && this.password != undefined) {
-    //   if (this.email == "smart" && this.password == "123456") {
-    //     console.log("login successful");
-    //     this.navCtrl.push(DashboardPage);
-    //   } else {
-    //     this.failedLoginToast();
-    //   }
-    // } else {
-    //   this.failedLoginToast();
-    // }
+  entrar() {
+    if (
+      (this.email == undefined || this.email == "") &&
+      (this.senha == undefined || this.senha == "")
+    ) {
+      // if (this.email != undefined && this.senha != undefined) {
+      if (
+        (this.email == undefined || this.email == "") &&
+        (this.senha == undefined || this.senha == "")
+      ) {
+        // if (this.email == "smart" && this.senha == "123456") {
+        this.navCtrl.push(MenuPrincipalPage);
+      } else {
+        this.toastCtrl.presentSimpleToast(
+          "Email e/ou senha estão incorretos",
+          "bottom"
+        );
+      }
+    } else {
+      this.toastCtrl.presentSimpleToast(
+        "Email e/ou senha estão incorretos",
+        "bottom"
+      );
+    }
   }
 
-  failedLoginToast() {
-    let toast = this.toastCtrl.create({
-      message: "Email e/ou senha estão incorretos",
-      duration: 3000,
-      position: "bottom",
-      cssClass: "toastMessage"
-    });
-
-    toast.present();
+  recuperarSenhaUsuario() {
+    this.navCtrl.push(RecuperarSenhaUsuarioPage);
   }
 
-  forgotPassword() {
-    this.navCtrl.push(ForgotPasswordPage);
-  }
-
-  signIn() {
-    this.navCtrl.push(SignInPage);
+  cadastrarUsuario() {
+    this.navCtrl.push(CadastrarUsuarioPage);
   }
 }

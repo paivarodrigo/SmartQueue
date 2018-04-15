@@ -1,5 +1,5 @@
-page-about {
-    .text-box {
+page-sobre {
+    .caixa-centro {
         margin-top: 5%;
         text-align: left;
         width: 80%;
@@ -8,7 +8,7 @@ page-about {
         display: block;
     }
 
-    .text-box > footer {
+    .caixa-centro > footer {
         font-weight: bold;
         color: gray;
     }

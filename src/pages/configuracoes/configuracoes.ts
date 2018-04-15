@@ -1,29 +1,29 @@
 import { Component } from "@angular/core";
 import { NavController, ViewController } from "ionic-angular";
 import { LoginPage } from "../login/login";
-import { AboutPage } from "../about/about";
-import { ChangePasswordPage } from "../change-password/change-password";
+import { SobrePage } from "../sobre/sobre";
+import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-usuario";
 
 @Component({
-  selector: "page-settings",
-  templateUrl: "settings.html"
+  selector: "page-configuracoes",
+  templateUrl: "configuracoes.html"
 })
-export class SettingsPage {
+export class ConfiguracoesPage {
   constructor(public navCtrl: NavController, public viewCtrl: ViewController) {}
 
   ionViewWillEnter() {
     this.viewCtrl.setBackButtonText("");
   }
 
-  changePassword() {
-    this.navCtrl.push(ChangePasswordPage);
+  alterarSenha() {
+    this.navCtrl.push(AlterarSenhaUsuarioPage);
   }
 
-  about() {
-    this.navCtrl.push(AboutPage);
+  sobre() {
+    this.navCtrl.push(SobrePage);
   }
 
-  logout() {
+  sair() {
     // Aqui ficará a lógica de logout, encerrar sessão etc.
     this.navCtrl.push(LoginPage);
   }

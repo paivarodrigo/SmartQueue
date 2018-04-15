@@ -3,13 +3,13 @@ import { NavController, ViewController } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
 
 @Component({
-  selector: "page-change-password",
-  templateUrl: "change-password.html"
+  selector: "page-alterar-senha-usuario",
+  templateUrl: "alterar-senha-usuario.html"
 })
-export class ChangePasswordPage {
-  currentPassword: any;
-  newPassword: any;
-  confirmNewPassword: any;
+export class AlterarSenhaUsuarioPage {
+  senhaAtual: any;
+  novaSenha: any;
+  confirmacaoNovaSenha: any;
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController,
@@ -20,26 +20,26 @@ export class ChangePasswordPage {
     this.viewCtrl.setBackButtonText("");
   }
 
-  save() {
-    if (!validateCurrentPassword(this.currentPassword)) {
+  salvar() {
+    if (!validarSenhaAtual(this.senhaAtual)) {
       this.toastCtrl.presentSimpleToast(
         "A senha atual está incorreta",
         "bottom"
       );
-    } else if (!validateNewPassword(this.newPassword)) {
+    } else if (!validarNovaSenha(this.novaSenha)) {
       this.toastCtrl.presentSimpleToast(
         "A nova senha deve ter ao menos 6 dígitos",
         "bottom"
       );
     } else if (
-      !validateConfirmNewPassword(this.newPassword, this.confirmNewPassword)
+      !validarConfirmacaoNovaSenha(this.novaSenha, this.confirmacaoNovaSenha)
     ) {
       this.toastCtrl.presentSimpleToast(
         "A senha confirmada não é igual a nova senha",
         "bottom"
       );
     } else if (
-      !checkCurrentAndNewPassword(this.currentPassword, this.newPassword)
+      !verificarSenhaAtualENovaSenha(this.senhaAtual, this.novaSenha)
     ) {
       this.toastCtrl.presentSimpleToast(
         "A nova senha não pode ser igual a anterior",
@@ -55,27 +55,27 @@ export class ChangePasswordPage {
   }
 }
 
-function validateCurrentPassword(currentPassword) {
+function validarSenhaAtual(senhaAtual) {
   // Aqui ficará a lógica de validação da senha atual
   return true;
 }
 
-function checkCurrentAndNewPassword(currentPassword, newPassword) {
+function verificarSenhaAtualENovaSenha(senhaAtual, novaSenha) {
   return (
-    currentPassword != undefined &&
-    newPassword != undefined &&
-    currentPassword != newPassword
+    senhaAtual != undefined &&
+    novaSenha != undefined &&
+    senhaAtual != novaSenha
   );
 }
 
-function validateNewPassword(newPassword) {
+function validarNovaSenha(newPassword) {
   return newPassword != undefined && newPassword.length >= 6;
 }
 
-function validateConfirmNewPassword(newPassword, confirmNewPassword) {
+function validarConfirmacaoNovaSenha(novaSenha, confirmacaoNovaSenha) {
   return (
-    newPassword != undefined &&
-    confirmNewPassword != undefined &&
-    newPassword == confirmNewPassword
+    novaSenha != undefined &&
+    confirmacaoNovaSenha != undefined &&
+    novaSenha == confirmacaoNovaSenha
   );
 }

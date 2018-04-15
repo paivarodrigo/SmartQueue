@@ -5,18 +5,18 @@ import moment from "moment";
 import { CPF } from "../../assets/utils/CPF";
 
 @Component({
-  selector: "page-sign-in",
-  templateUrl: "sign-in.html"
+  selector: "page-cadastrar-usuario",
+  templateUrl: "cadastrar-usuario.html"
 })
-export class SignInPage {
-  firstName: any;
-  lastName: any;
-  birthDate: any;
+export class CadastrarUsuarioPage {
+  nome: any;
+  sobrenome: any;
+  dataDeNascimento: any;
   cpf: any;
   email: any;
-  homeTown: any;
-  password: any;
-  confirmPassword: any;
+  cidadeNatal: any;
+  senha: any;
+  confirmacaoSenha: any;
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController,
@@ -27,32 +27,32 @@ export class SignInPage {
     this.viewCtrl.setBackButtonText("");
   }
 
-  register() {
-    if (!validateFirstName(this.firstName)) {
+  cadastrarUsuario() {
+    if (!validarNome(this.nome)) {
       this.toastCtrl.presentSimpleToast("O campo Nome é obrigatório", "bottom");
-    } else if (!validateLastName(this.lastName)) {
+    } else if (!validarSobrenome(this.sobrenome)) {
       this.toastCtrl.presentSimpleToast(
         "O campo Sobrenome é obrigatório",
         "bottom"
       );
-    } else if (!validateBirthDate(this.birthDate)) {
+    } else if (!validarDataDeNascimento(this.dataDeNascimento)) {
       this.toastCtrl.presentSimpleToast(
         "O campo Data de Nascimento é obrigatório",
         "bottom"
       );
-    } else if (!validateCpf(this.cpf)) {
+    } else if (!validarCpf(this.cpf)) {
       this.toastCtrl.presentSimpleToast("O CPF informado é inválido", "bottom");
-    } else if (!validateEmail(this.email)) {
+    } else if (!validarEmail(this.email)) {
       this.toastCtrl.presentSimpleToast(
         "O email informado é inválido",
         "bottom"
       );
-    } else if (!validatePassword(this.password)) {
+    } else if (!validarSenha(this.senha)) {
       this.toastCtrl.presentSimpleToast(
         "A senha deve ter ao menos 6 dígitos",
         "bottom"
       );
-    } else if (!validateConfirmPassword(this.password, this.confirmPassword)) {
+    } else if (!validarConfirmacaoSenha(this.senha, this.confirmacaoSenha)) {
       this.toastCtrl.presentSimpleToast(
         "A senha confirmada não é igual a senha requerida",
         "bottom"
@@ -67,35 +67,35 @@ export class SignInPage {
   }
 }
 
-function validateFirstName(firstName) {
-  return firstName != undefined && firstName.length > 1;
+function validarNome(nome) {
+  return nome != undefined && nome.length > 1;
 }
 
-function validateLastName(lastName) {
-  return lastName != undefined && lastName.length > 1;
+function validarSobrenome(sobrenome) {
+  return sobrenome != undefined && sobrenome.length > 1;
 }
 
-function validateBirthDate(birthDate) {
-  return moment(birthDate, "YYYY-MM-DD").isValid();
+function validarDataDeNascimento(dataDeNascimento) {
+  return moment(dataDeNascimento, "YYYY-MM-DD").isValid();
 }
 
-function validateCpf(cpf) {
+function validarCpf(cpf) {
   return CPF.isValid(cpf);
 }
 
-function validateEmail(email) {
+function validarEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
-function validatePassword(password) {
-  return password != undefined && password.length >= 6;
+function validarSenha(senha) {
+  return senha != undefined && senha.length >= 6;
 }
 
-function validateConfirmPassword(password, confirmPassword) {
+function validarConfirmacaoSenha(senha, confirmacaoSenha) {
   return (
-    password != undefined &&
-    confirmPassword != undefined &&
-    password == confirmPassword
+    senha != undefined &&
+    confirmacaoSenha != undefined &&
+    senha == confirmacaoSenha
   );
 }

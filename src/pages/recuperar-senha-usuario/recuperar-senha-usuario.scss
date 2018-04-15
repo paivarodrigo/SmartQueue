@@ -1,10 +1,15 @@
-page-forgot-password {
-  .center-box {
+page-recuperar-senha-usuario {
+  .caixa-centro {
     margin-top: 5%;
     text-align: center;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: block;
+  }
+
+  .botao-salvar {
+    text-align: center;
+    margin-top: 5%;
   }
 }

@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Alterar Senha
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="alterar-senha-usuario-page">
+    <div>
+        <div class="alterar-senha-form">
+            <form>
+                <ion-item>
+                    <ion-input [value]="senhaAtual" [(ngModel)]="senhaAtual" type="password" name="senhaAtual" placeholder="Senha Atual"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input [value]="novaSenha" [(ngModel)]="novaSenha" type="password" name="novaSenha" placeholder="Nova Senha"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input [value]="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha" type="password" name="confirmacaoNovaSenha" placeholder="Confirmar Nova Senha"></ion-input>
+                </ion-item>
+                <button ion-button class="botao-salvar" color="positive" block (click)="salvar()">
+                    Salvar
+                </button>
+            </form>
+        </div>
+    </div>
+</ion-content>
