@@ -1,3 +1,4 @@
+import { RankingEstabelecimentoPage } from './../ranking-estabelecimento/ranking-estabelecimento';
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { ConfiguracoesPage } from "../configuracoes/configuracoes";
@@ -16,5 +17,9 @@ export class MenuPrincipalPage {
 
   configuracoes() {
     this.navCtrl.push(ConfiguracoesPage);
+  }
+
+  rankingEstabelecimento(){
+    this.navCtrl.push(RankingEstabelecimentoPage.name);
   }
 }
