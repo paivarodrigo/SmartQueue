@@ -1,32 +1,32 @@
 <ion-content padding id="login-page">
+  <div>
+    <img src="assets/imgs/UmQxtnPPRUSidLkXAzI0_logo.png" class="logo" />
+  </div>
+  <div>
     <div>
-      <img src="assets/imgs/UmQxtnPPRUSidLkXAzI0_logo.png" class="logo" />
+      <form>
+        <ion-item>
+          <ion-label>
+            Email:
+          </ion-label>
+          <ion-input [value]="email" [(ngModel)]="email" type="text" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Senha:
+          </ion-label>
+          <ion-input [value]="senha" [(ngModel)]="senha" type="password" name="senha"></ion-input>
+        </ion-item>
+        <button ion-button color="positive" block (click)="entrar()" class="opcao">
+          Entrar
+        </button>
+      </form>
     </div>
-    <div>
-      <div>
-        <form>
-          <ion-item>
-            <ion-label>
-              Email:
-            </ion-label>
-            <ion-input [value]="email" [(ngModel)]="email" type="text" name="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Senha:
-            </ion-label>
-            <ion-input [value]="senha" [(ngModel)]="senha" type="password" name="senha"></ion-input>
-          </ion-item>
-          <button ion-button color="positive" block (click)="entrar()" class="opcao">
-            Entrar
-          </button>
-        </form>
-      </div>
-      <div class="opcao">
-        <a (click)="recuperarSenhaUsuario()">Esqueci minha senha</a>
-      </div>
-      <div class="opcao">
-        <a (click)="cadastrarUsuario()">Você é novo? Cadastre-se</a>
-      </div>
+    <div class="opcao">
+      <a (click)="recuperarSenhaUsuario()">Esqueci minha senha</a>
     </div>
-  </ion-content>
+    <div class="opcao">
+      <a (click)="cadastrarUsuario()">Você é novo? Cadastre-se</a>
+    </div>
+  </div>
+</ion-content>
