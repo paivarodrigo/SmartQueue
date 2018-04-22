@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
-import { NavController, ViewController } from "ionic-angular";
-import { Toaster } from "../../assets/utils/Toaster";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Toaster } from '../../assets/utils/Toaster';
 
+@IonicPage()
 @Component({
   selector: "page-alterar-senha-usuario",
   templateUrl: "alterar-senha-usuario.html"
@@ -12,13 +13,8 @@ export class AlterarSenhaUsuarioPage {
   confirmacaoNovaSenha: any;
   constructor(
     public navCtrl: NavController,
-    public viewCtrl: ViewController,
     private toastCtrl: Toaster
   ) {}
-
-  ionViewWillEnter() {
-    this.viewCtrl.setBackButtonText("");
-  }
 
   salvar() {
     if (!validarSenhaAtual(this.senhaAtual)) {

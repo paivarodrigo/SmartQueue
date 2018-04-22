@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
 import { MenuPrincipalPage } from "../menu-principal/menu-principal";
 import { CadastrarUsuarioPage } from "../cadastrar-usuario/cadastrar-usuario";
 import { RecuperarSenhaUsuarioPage } from "../recuperar-senha-usuario/recuperar-senha-usuario";
 
+@IonicPage()
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -25,7 +26,7 @@ export class LoginPage {
         (this.senha == undefined || this.senha == "")
       ) {
         // if (this.email == "smart" && this.senha == "123456") {
-        this.navCtrl.push(MenuPrincipalPage);
+        this.navCtrl.push(MenuPrincipalPage.name);
       } else {
         this.toastCtrl.presentSimpleToast(
           "Email e/ou senha estão incorretos",
@@ -41,10 +42,10 @@ export class LoginPage {
   }
 
   recuperarSenhaUsuario() {
-    this.navCtrl.push(RecuperarSenhaUsuarioPage);
+    this.navCtrl.push(RecuperarSenhaUsuarioPage.name);
   }
 
   cadastrarUsuario() {
-    this.navCtrl.push(CadastrarUsuarioPage);
+    this.navCtrl.push(CadastrarUsuarioPage.name);
   }
 }

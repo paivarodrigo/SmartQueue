@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
-import { NavController, ViewController, AlertController } from "ionic-angular";
+import { NavController, AlertController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
 
+@IonicPage()
 @Component({
   selector: "page-solicitar-reserva",
   templateUrl: "solicitar-reserva.html"
@@ -10,16 +11,12 @@ export class SolicitarReservaPage {
   public numeroDeAssentos: any;
   constructor(
     public navCtrl: NavController,
-    public viewCtrl: ViewController,
     public alertCtrl: AlertController,
     public toastCtrl: Toaster
   ) {
     this.numeroDeAssentos = 0;
   }
 
-  ionViewWillEnter() {
-    this.viewCtrl.setBackButtonText("");
-  }
 
   incrementarAssentos(incrementar) {
     incrementar ? this.numeroDeAssentos++ : this.numeroDeAssentos--;

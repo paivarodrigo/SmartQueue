@@ -1,20 +1,20 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>
-            Solicitar Reserva
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+      <ion-title>
+          Solicitar Reserva
+      </ion-title>
+  </ion-navbar>
 </ion-header>
 <ion-content id="solicitar-reserva-page">
-    <div class="caixa-centro" style="margin-top: 25%;">
-        <h3>Quantidade de Assentos</h3>
-        <div class="row caixa-centro">
-            <ion-icon color="primary" name="remove-circle" (click)="incrementarAssentos(false)"></ion-icon>
-            <span class="assentos">{{numeroDeAssentos}}</span>
-            <ion-icon color="primary" name="add-circle" (click)="incrementarAssentos(true)"></ion-icon>
-        </div>
-        <div class="row caixa-centro">
-            <button ion-button color="primary" (click)="solicitarReserva()">OK</button>
-        </div>
-    </div>
+  <div class="caixa-centro" style="margin-top: 25%;">
+      <h3>Quantidade de Assentos</h3>
+      <div class="row caixa-centro">
+          <ion-icon color="primary" name="remove-circle" (click)="incrementarAssentos(false)"></ion-icon>
+          <span class="assentos">{{numeroDeAssentos}}</span>
+          <ion-icon color="primary" name="add-circle" (click)="incrementarAssentos(true)"></ion-icon>
+      </div>
+      <div class="row caixa-centro">
+          <button ion-button color="primary" (click)="solicitarReserva()">OK</button>
+      </div>
+  </div>
 </ion-content>

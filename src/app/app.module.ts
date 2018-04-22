@@ -19,27 +19,13 @@ import { SolicitarReservaPage } from "../pages/solicitar-reserva/solicitar-reser
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    MenuPrincipalPage,
-    RecuperarSenhaUsuarioPage,
-    CadastrarUsuarioPage,
-    AlterarSenhaUsuarioPage,
-    ConfiguracoesPage,
-    SobrePage,
-    SolicitarReservaPage
+    LoginPage
   ],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage,
-    MenuPrincipalPage,
-    RecuperarSenhaUsuarioPage,
-    CadastrarUsuarioPage,
-    AlterarSenhaUsuarioPage,
-    ConfiguracoesPage,
-    SobrePage,
-    SolicitarReservaPage
+    LoginPage
   ],
   providers: [
     StatusBar,

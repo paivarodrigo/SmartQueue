@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
-import { NavController, ViewController } from "ionic-angular";
+import { NavController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
 import moment from "moment";
 import { CPF } from "../../assets/utils/CPF";
 
+@IonicPage()
 @Component({
   selector: "page-cadastrar-usuario",
   templateUrl: "cadastrar-usuario.html"
@@ -19,13 +20,9 @@ export class CadastrarUsuarioPage {
   confirmacaoSenha: any;
   constructor(
     public navCtrl: NavController,
-    public viewCtrl: ViewController,
     private toastCtrl: Toaster
   ) {}
 
-  ionViewWillEnter() {
-    this.viewCtrl.setBackButtonText("");
-  }
 
   cadastrarUsuario() {
     if (!validarNome(this.nome)) {

@@ -1,14 +1,24 @@
-import { Component } from "@angular/core";
-import { NavController, ViewController } from "ionic-angular";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+@IonicPage()
 @Component({
-  selector: "page-recuperar-senha-usuario",
-  templateUrl: "recuperar-senha-usuario.html"
+  selector: 'page-recuperar-senha-usuario',
+  templateUrl: 'recuperar-senha-usuario.html',
 })
 export class RecuperarSenhaUsuarioPage {
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController) {}
 
-  ionViewWillEnter() {
-    this.viewCtrl.setBackButtonText("");
+  public cpf: string;
+  public email: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+      this.cpf = '';
+      this.email = '';
+
+  }
+  
+  salvar(){
+
   }
 }
