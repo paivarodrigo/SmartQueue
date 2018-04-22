@@ -9,13 +9,14 @@
 
 
 <ion-content padding>
-    
+
   <ion-list>
-    <ion-item>Bolinho de Bacalhau</ion-item>
-    <ion-item>Parmegiana</ion-item>
-    <ion-item>Salada Caesar</ion-item>
-    <ion-item>Risoto</ion-item>
-    <ion-item>Lanche</ion-item>
+    <ion-item *ngFor='let produto of produtos'>
+      <ion-thumbnail item-start>
+        <img src="{{produto.foto}}">
+      </ion-thumbnail>
+      <h3> {{produto.descricao}}</h3>
+    </ion-item>
   </ion-list>
 
 </ion-content>
