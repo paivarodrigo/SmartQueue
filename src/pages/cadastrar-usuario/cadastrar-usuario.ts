@@ -1,8 +1,11 @@
+import { CadastrarUsuarioServiceProvider } from './../../providers/cadastrar-usuario-service/cadastrar-usuario-service';
+import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
 import moment from "moment";
 import { CPF } from "../../assets/utils/CPF";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -10,56 +13,65 @@ import { CPF } from "../../assets/utils/CPF";
   templateUrl: "cadastrar-usuario.html"
 })
 export class CadastrarUsuarioPage {
-  nome: any;
-  sobrenome: any;
-  dataDeNascimento: any;
-  cpf: any;
-  email: any;
-  cidadeNatal: any;
-  senha: any;
-  confirmacaoSenha: any;
+
+  public usuario: Usuario;
+  public confirmacaoSenha: any;
+
   constructor(
     public navCtrl: NavController,
-    private toastCtrl: Toaster
-  ) {}
+    private _toastCtrl: Toaster,
+    private _usuarioService: CadastrarUsuarioServiceProvider) {
+      this.usuario = new Usuario;
+    }
 
 
   cadastrarUsuario() {
-    if (!validarNome(this.nome)) {
-      this.toastCtrl.presentSimpleToast("O campo Nome é obrigatório", "bottom");
-    } else if (!validarSobrenome(this.sobrenome)) {
-      this.toastCtrl.presentSimpleToast(
+    if (!validarNome(this.usuario.nome)) {
+      this._toastCtrl.presentSimpleToast("O campo Nome é obrigatório", "bottom");
+    } else if (!validarSobrenome(this.usuario.sobrenome)) {
+      this._toastCtrl.presentSimpleToast(
         "O campo Sobrenome é obrigatório",
         "bottom"
       );
-    } else if (!validarDataDeNascimento(this.dataDeNascimento)) {
-      this.toastCtrl.presentSimpleToast(
+    } else if (!validarDataDeNascimento(this.usuario.dataDeNascimento)) {
+      this._toastCtrl.presentSimpleToast(
         "O campo Data de Nascimento é obrigatório",
         "bottom"
       );
-    } else if (!validarCpf(this.cpf)) {
-      this.toastCtrl.presentSimpleToast("O CPF informado é inválido", "bottom");
-    } else if (!validarEmail(this.email)) {
-      this.toastCtrl.presentSimpleToast(
+    } else if (!validarCpf(this.usuario.cpf)) {
+      this._toastCtrl.presentSimpleToast("O CPF informado é inválido", "bottom");
+    } else if (!validarEmail(this.usuario.email)) {
+      this._toastCtrl.presentSimpleToast(
         "O email informado é inválido",
         "bottom"
       );
-    } else if (!validarSenha(this.senha)) {
-      this.toastCtrl.presentSimpleToast(
+    } else if (!validarSenha(this.usuario.senha)) {
+      this._toastCtrl.presentSimpleToast(
         "A senha deve ter ao menos 6 dígitos",
         "bottom"
       );
-    } else if (!validarConfirmacaoSenha(this.senha, this.confirmacaoSenha)) {
-      this.toastCtrl.presentSimpleToast(
+    } else if (!validarConfirmacaoSenha(this.usuario.senha, this.confirmacaoSenha)) {
+      this._toastCtrl.presentSimpleToast(
         "A senha confirmada não é igual a senha requerida",
         "bottom"
       );
     } else {
-      // TODO: Aqui ficará toda a lógica para cadastrar o usuário, chamadas de API e etc...
-      this.toastCtrl.presentSimpleToast(
-        "Cadastro efetuado com sucesso",
-        "bottom"
-      );
+      
+      this._usuarioService.cadastrar(this.usuario).subscribe(        
+        success => {
+
+          this._toastCtrl.presentSimpleToast(
+            "Cadastro efetuado com sucesso!",
+            "bottom"
+          );
+    
+        }, (error: HttpErrorResponse) => {
+          this._toastCtrl.presentSimpleToast(
+            error.error, 
+            "bottom"
+          );
+        }
+      );    
     }
   }
 }
@@ -96,3 +108,4 @@ function validarConfirmacaoSenha(senha, confirmacaoSenha) {
     senha == confirmacaoSenha
   );
 }
+     
