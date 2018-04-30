@@ -1,7 +1,10 @@
+import { MenuPrincipalPage } from './../menu-principal/menu-principal';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LoginServiceProvider } from './../../providers/login-service/login-service';
+import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
-import { MenuPrincipalPage } from "../menu-principal/menu-principal";
 import { CadastrarUsuarioPage } from "../cadastrar-usuario/cadastrar-usuario";
 import { RecuperarSenhaUsuarioPage } from "../recuperar-senha-usuario/recuperar-senha-usuario";
 
@@ -11,34 +14,37 @@ import { RecuperarSenhaUsuarioPage } from "../recuperar-senha-usuario/recuperar-
   templateUrl: "login.html"
 })
 export class LoginPage {
-  email: any;
-  senha: any;
-  constructor(public navCtrl: NavController, private toastCtrl: Toaster) {}
 
-  entrar() {
-    if (
-      (this.email == undefined || this.email == "") &&
-      (this.senha == undefined || this.senha == "")
-    ) {
-      // if (this.email != undefined && this.senha != undefined) {
-      if (
-        (this.email == undefined || this.email == "") &&
-        (this.senha == undefined || this.senha == "")
-      ) {
-        // if (this.email == "smart" && this.senha == "123456") {
-        this.navCtrl.push(MenuPrincipalPage.name);
-      } else {
-        this.toastCtrl.presentSimpleToast(
-          "Email e/ou senha estão incorretos",
-          "bottom"
-        );
-      }
-    } else {
-      this.toastCtrl.presentSimpleToast(
-        "Email e/ou senha estão incorretos",
-        "bottom"
+  public usuario: Usuario;
+
+  constructor(public navCtrl: NavController, private toastCtrl: Toaster, private _usuarioService: LoginServiceProvider) {
+    this.usuario = new Usuario;
+  }
+  
+  entrar(){
+    if(
+        (this.usuario.email != undefined && this.usuario.email != "") &&
+        (this.usuario.senha != undefined && this.usuario.senha != "")
+    ){
+      
+      this._usuarioService.logar(this.usuario).subscribe(
+        success => {
+          this.navCtrl.push(MenuPrincipalPage.name);
+        },
+        (error: HttpErrorResponse) => {
+          this.toastCtrl.presentSimpleToast(
+            error.error,
+            "bottom"
+          );
+        }
       );
+    } else{
+      this.toastCtrl.presentSimpleToast(
+            "Email e/ou senha estão incorretos.",
+            "bottom"
+          );
     }
+    
   }
 
   recuperarSenhaUsuario() {

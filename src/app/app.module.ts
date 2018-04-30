@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from "./app.component";
 import { Toaster } from "../assets/utils/Toaster";
 import { CadastrarUsuarioServiceProvider } from '../providers/cadastrar-usuario-service/cadastrar-usuario-service';
+import { LoginServiceProvider } from '../providers/login-service/login-service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CadastrarUsuarioServiceProvider } from '../providers/cadastrar-usuario-
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Toaster,
-    CadastrarUsuarioServiceProvider
+    CadastrarUsuarioServiceProvider,
+    LoginServiceProvider
   ]
 })
 export class AppModule {}

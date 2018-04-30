@@ -19,7 +19,7 @@ export class CadastrarUsuarioServiceProvider {
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
   
-    return this._http.post(link, jsonUsuario, {headers: headers})
+    return this._http.post(link, jsonUsuario, {headers: headers});
   }
 
 }

@@ -27,32 +27,32 @@ export class CadastrarUsuarioPage {
 
   cadastrarUsuario() {
     if (!validarNome(this.usuario.nome)) {
-      this._toastCtrl.presentSimpleToast("O campo Nome é obrigatório", "bottom");
+      this._toastCtrl.presentSimpleToast("O campo Nome é obrigatório.", "bottom");
     } else if (!validarSobrenome(this.usuario.sobrenome)) {
       this._toastCtrl.presentSimpleToast(
-        "O campo Sobrenome é obrigatório",
+        "O campo Sobrenome é obrigatório.",
         "bottom"
       );
     } else if (!validarDataDeNascimento(this.usuario.dataDeNascimento)) {
       this._toastCtrl.presentSimpleToast(
-        "O campo Data de Nascimento é obrigatório",
+        "O campo Data de Nascimento é obrigatório.",
         "bottom"
       );
     } else if (!validarCpf(this.usuario.cpf)) {
-      this._toastCtrl.presentSimpleToast("O CPF informado é inválido", "bottom");
+      this._toastCtrl.presentSimpleToast("O CPF informado é inválido.", "bottom");
     } else if (!validarEmail(this.usuario.email)) {
       this._toastCtrl.presentSimpleToast(
-        "O email informado é inválido",
+        "O email informado é inválido.",
         "bottom"
       );
     } else if (!validarSenha(this.usuario.senha)) {
       this._toastCtrl.presentSimpleToast(
-        "A senha deve ter ao menos 6 dígitos",
+        "A senha deve ter ao menos 6 dígitos.",
         "bottom"
       );
     } else if (!validarConfirmacaoSenha(this.usuario.senha, this.confirmacaoSenha)) {
       this._toastCtrl.presentSimpleToast(
-        "A senha confirmada não é igual a senha requerida",
+        "A senha confirmada não é igual a senha requerida.",
         "bottom"
       );
     } else {

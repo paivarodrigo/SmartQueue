@@ -9,13 +9,13 @@
           <ion-label>
             Email:
           </ion-label>
-          <ion-input [value]="email" [(ngModel)]="email" type="text" name="email"></ion-input>
+          <ion-input [value]="usuario.email" [(ngModel)]="usuario.email" type="text" name="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             Senha:
           </ion-label>
-          <ion-input [value]="senha" [(ngModel)]="senha" type="password" name="senha"></ion-input>
+          <ion-input [value]="usuario.senha" [(ngModel)]="usuario.senha" type="password" name="senha"></ion-input>
         </ion-item>
         <button ion-button color="positive" block (click)="entrar()" class="opcao">
           Entrar
