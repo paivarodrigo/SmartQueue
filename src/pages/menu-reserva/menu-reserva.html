@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <ion-title>
+          Menu Reserva
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="menu-reserva-page">
+  <div>
+      <div class="itens-menu">
+
+        <div class="botoes-primeira-linha">
+            <button ion-button inline large class="botoes-esquerda">
+                <span>Fazer Pedido</span>
+            </button>
+
+            <button ion-button inline large class="botoes-direita" (click)="rankingEstabelecimento()">
+                <span>Ranking</span>
+            </button>
+        </div>
+
+        <div class="botoes-segunda-linha">
+            <button ion-button inline large class="botoes-esquerda">
+                <span>Histórico</span>
+            </button>
+
+            <button ion-button inline large class="botoes-direita">
+                <span>Conta</span>
+            </button>
+        </div>
+
+        <div class="botao-cancelar-reserva">
+            <button ion-button inline large (click)="cancelarReserva()">
+                <span>Cancelar Reserva</span>
+            </button>
+        </div>
+
+      </div>
+  </div>
+</ion-content>

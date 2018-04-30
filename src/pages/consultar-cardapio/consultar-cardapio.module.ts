@@ -14,3 +14,6 @@ import { ConsultarCardapioPage } from './consultar-cardapio';
   ]
 })
 export class ConsultarCardapioPageModule {}
+
+
+  

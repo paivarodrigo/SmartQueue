@@ -22,28 +22,29 @@ export class LoginPage {
   }
   
   entrar(){
-    if(
-        (this.usuario.email != undefined && this.usuario.email != "") &&
-        (this.usuario.senha != undefined && this.usuario.senha != "")
-    ){
+    // if(
+    //     (this.usuario.email != undefined && this.usuario.email != "") &&
+    //     (this.usuario.senha != undefined && this.usuario.senha != "")
+    // ){
       
-      this._usuarioService.logar(this.usuario).subscribe(
-        success => {
-          this.navCtrl.push(MenuPrincipalPage.name);
-        },
-        (error: HttpErrorResponse) => {
-          this.toastCtrl.presentSimpleToast(
-            error.error,
-            "bottom"
-          );
-        }
-      );
-    } else{
-      this.toastCtrl.presentSimpleToast(
-            "Email e/ou senha estão incorretos.",
-            "bottom"
-          );
-    }
+    //   this._usuarioService.logar(this.usuario).subscribe(
+    //     success => {
+    //       this.navCtrl.push(MenuPrincipalPage.name);
+    //     },
+    //     (error: HttpErrorResponse) => {
+    //       this.toastCtrl.presentSimpleToast(
+    //         error.error,
+    //         "bottom"
+    //       );
+    //     }
+    //   );
+    // } else{
+    //   this.toastCtrl.presentSimpleToast(
+    //         "Email e/ou senha estão incorretos.",
+    //         "bottom"
+    //       );
+    // }
+    this.navCtrl.push(MenuPrincipalPage.name);
     
   }
 

@@ -1,3 +1,5 @@
+import { MenuPrincipalPage } from './../menu-principal/menu-principal';
+import { MenuReservaPage } from './../menu-reserva/menu-reserva';
 import { Component } from "@angular/core";
 import { NavController, AlertController, IonicPage } from "ionic-angular";
 import { Toaster } from "../../assets/utils/Toaster";
@@ -47,13 +49,13 @@ export class SolicitarReservaPage {
           {
             text: "Não aceito",
             handler: () => {
-              console.log("Disagree clicked");
+              this.navCtrl.push(MenuPrincipalPage.name);
             }
           },
           {
             text: "Aceito",
             handler: () => {
-              console.log("Agree clicked");
+              this.navCtrl.push(MenuReservaPage.name);
             }
           }
         ]

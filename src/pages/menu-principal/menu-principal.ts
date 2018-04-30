@@ -1,3 +1,4 @@
+import { ConsultarCardapioPage } from './../consultar-cardapio/consultar-cardapio';
 import { RankingEstabelecimentoPage } from './../ranking-estabelecimento/ranking-estabelecimento';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
@@ -22,6 +23,10 @@ export class MenuPrincipalPage {
 
   rankingEstabelecimento(){
     this.navCtrl.push(RankingEstabelecimentoPage.name);
+  }
+
+  consultarCardapio(){
+    this.navCtrl.push(ConsultarCardapioPage.name);
   }
 }
 

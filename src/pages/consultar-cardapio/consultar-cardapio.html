@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>consultar-cardapio</ion-title>
+    <ion-title>Cardápio</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,4 +9,51 @@
 
 <ion-content padding>
 
+  <ion-item-group *ngFor='let categoria of categorias'>
+    <ion-item-divider color="{{categoria.cor}}" >
+      <ion-icon name="{{categoria.icone}}"></ion-icon>
+      {{categoria.caracteristica}}
+    </ion-item-divider>
+    <ion-item *ngFor='let produto of produtos' (click)="sobreProdutoCardapio(produto)">
+      {{produto.descricao}}
+    </ion-item>
+  </ion-item-group>
+
+  <!-- <div>
+    <ion-segment [(ngModel)]="categoriaSelecionada">
+      <ion-segment-button *ngFor='let categoria of categorias' value="{{categoria}}">
+        {{categoria}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+      
+  <div [ngSwitch]="categoriaSelecionada">
+    <ion-list *ngSwitchCase="categorias[0]">
+      <ion-item>
+        <h2>FDP</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Oscar</h2>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="categorias[1]">
+      <ion-item (click)="sobreItemCardapio()">
+        <h2>Luna</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Milo</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="categorias[2]">
+      <ion-item>
+        <h2>Donald</h2>
+      </ion-item>
+      <ion-item>
+        <h2>Papao</h2>
+      </ion-item>
+    </ion-list>
+  </div> -->
+  
 </ion-content>
