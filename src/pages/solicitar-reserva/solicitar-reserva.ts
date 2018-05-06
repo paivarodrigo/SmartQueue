@@ -11,6 +11,7 @@ import { Toaster } from "../../assets/utils/Toaster";
 })
 export class SolicitarReservaPage {
   public numeroDeAssentos: any;
+  public tempoEstimado: string;
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -34,7 +35,7 @@ export class SolicitarReservaPage {
   solicitarReserva() {
     if (this.numeroDeAssentos > 0) {
       // Aqui ficará a chamada da API para gerar senha e etc.
-      let tempoEstimado = "28 minutos";
+      this.tempoEstimado = "28 minutos";
 
       let confirmacao = this.alertCtrl.create({
         title: "Confirmar Solicitação",
@@ -43,7 +44,7 @@ export class SolicitarReservaPage {
           this.numeroDeAssentos +
           (this.numeroDeAssentos > 1 ? " pessoas" : " pessoa") +
           " é de " +
-          tempoEstimado +
+          this.tempoEstimado +
           ". Você confirma a solicitação?",
         buttons: [
           {
@@ -55,7 +56,9 @@ export class SolicitarReservaPage {
           {
             text: "Aceito",
             handler: () => {
-              this.navCtrl.push(MenuReservaPage.name);
+              this.navCtrl.push(MenuReservaPage.name, {
+                tempoEstimado: this.tempoEstimado
+              });
             }
           }
         ]

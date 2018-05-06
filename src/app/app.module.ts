@@ -4,17 +4,21 @@ import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 import { HttpClientModule } from '@angular/common/http';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from "./app.component";
 import { Toaster } from "../assets/utils/Toaster";
-import { CadastrarUsuarioServiceProvider } from '../providers/cadastrar-usuario-service/cadastrar-usuario-service';
-import { LoginServiceProvider } from '../providers/login-service/login-service';
+import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 
 @NgModule({
   declarations: [
     MyApp
   ],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpClientModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(MyApp), 
+    IonicStorageModule.forRoot(),
+    HttpClientModule  
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
@@ -24,8 +28,7 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Toaster,
-    CadastrarUsuarioServiceProvider,
-    LoginServiceProvider
+    UsuarioServiceProvider
   ]
 })
 export class AppModule {}

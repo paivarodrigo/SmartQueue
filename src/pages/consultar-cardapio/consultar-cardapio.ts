@@ -16,10 +16,10 @@ export class ConsultarCardapioPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.categorias = [
-      {caracteristica: 'ENTRADAS', icone: 'nutrition', cor: 'primary'},
-      {caracteristica: 'PRATO PRINCIPAL', icone: 'restaurant', cor:'ranking'},
-      {caracteristica: 'BEBIDAS', icone: 'pint', cor:'card'},
-      {caracteristica: 'SOBREMESA', icone: 'ice-cream', cor:'request'},
+      {caracteristica: 'ENTRADAS', icone: 'nutrition'},
+      {caracteristica: 'PRATO PRINCIPAL', icone: 'restaurant'},
+      {caracteristica: 'BEBIDAS', icone: 'pint'},
+      {caracteristica: 'SOBREMESA', icone: 'ice-cream'},
     ];
 
     this.produtos = [

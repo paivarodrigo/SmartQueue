@@ -1,6 +1,6 @@
 page-menu-reserva {
     .itens-menu {
-      margin-top: 15%;
+      margin-top: 5%;
     }
   
     .itens-menu > div > button {
@@ -23,8 +23,17 @@ page-menu-reserva {
     }
 
     .botao-cancelar-reserva > button {
-      margin-top: 5%;
+      margin-top: 3%;
       width: 100%;
       height: 3.8em;
+    }
+
+    .informacao-senha-tempo{
+      margin-top: 3%;
+      text-align: center;
+    }
+
+    .informacao-destaque{
+      font-weight: bolder; 
     }
 }

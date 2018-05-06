@@ -1,4 +1,4 @@
-import { CadastrarUsuarioServiceProvider } from './../../providers/cadastrar-usuario-service/cadastrar-usuario-service';
+import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
@@ -20,7 +20,7 @@ export class CadastrarUsuarioPage {
   constructor(
     public navCtrl: NavController,
     private _toastCtrl: Toaster,
-    private _usuarioService: CadastrarUsuarioServiceProvider) {
+    private _usuarioService: UsuarioServiceProvider) {
       this.usuario = new Usuario;
     }
 

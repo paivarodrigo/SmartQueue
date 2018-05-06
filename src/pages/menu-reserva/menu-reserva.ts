@@ -1,7 +1,7 @@
 import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { RankingEstabelecimentoPage } from './../ranking-estabelecimento/ranking-estabelecimento';
 import { Component } from "@angular/core";
-import { NavController, IonicPage } from "ionic-angular";
+import { NavController, IonicPage, NavParams } from "ionic-angular";
 
 @IonicPage()
 @Component({
@@ -9,7 +9,14 @@ import { NavController, IonicPage } from "ionic-angular";
   templateUrl: "menu-reserva.html"
 })
 export class MenuReservaPage {
-  constructor(public navCtrl: NavController) {}
+
+  public tempoEstimado: string;
+  public senhaMesa: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.tempoEstimado = navParams.get('tempoEstimado');
+    this.senhaMesa = "EEW89FW9";
+  }
 
   cancelarReserva() {
     this.navCtrl.push(MenuPrincipalPage.name);
