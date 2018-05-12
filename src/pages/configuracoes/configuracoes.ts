@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, IonicPage } from "ionic-angular";
+import { NavController, IonicPage, AlertController } from "ionic-angular";
 import { LoginPage } from "../login/login";
 import { SobrePage } from "../sobre/sobre";
 import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-usuario";
@@ -10,7 +10,8 @@ import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-
   templateUrl: "configuracoes.html"
 })
 export class ConfiguracoesPage {
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController) {}
 
   alterarSenha() {
     this.navCtrl.push(AlterarSenhaUsuarioPage.name);
@@ -21,7 +22,7 @@ export class ConfiguracoesPage {
   }
 
   sair() {
-    // Aqui ficará a lógica de logout, encerrar sessão etc.
+    
     this.navCtrl.push(LoginPage.name);
   }
 }

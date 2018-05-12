@@ -1,18 +1,15 @@
-import { Storage } from "@ionic/storage";
-
-//pacote para transformar nossa classe em injetável
+import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from "./usuario";
-
+import { Usuario } from '../../models/usuario';
 
 
 @Injectable()
-export class Session {
+export class SessionProvider {
 
-    constructor(public storage: Storage){
+    constructor(public http: HttpClient,
+        public storage: Storage) {}
 
-    }
-    // setando uma seção e passando o tipo de usuário
     create(usuario: Usuario) {
         this.storage.set('usuario', usuario);
     }
@@ -21,7 +18,6 @@ export class Session {
         return this.storage.get('usuario');
     }
 
-    // Quando deslogar deve remova do storage
     remove() {
         this.storage.remove('usuario');
     }
@@ -38,4 +34,6 @@ export class Session {
             }
         });
     }
+
 }
+

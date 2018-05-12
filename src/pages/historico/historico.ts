@@ -1,4 +1,3 @@
-import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { HistoricoModalPage } from './../historico-modal/historico-modal';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
@@ -13,7 +12,6 @@ export class HistoricoPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private _usuarioService: UsuarioServiceProvider,
     private _loadingCtrl: LoadingController, 
     public modalCtrl: ModalController) {}
 

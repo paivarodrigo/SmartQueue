@@ -1,6 +1,6 @@
+import { ToasterProvider } from './../../providers/toaster/toaster';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Toaster } from '../../assets/utils/Toaster';
+import { IonicPage, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ export class AlterarSenhaUsuarioPage {
   confirmacaoNovaSenha: any;
   constructor(
     public navCtrl: NavController,
-    private toastCtrl: Toaster
+    private toastCtrl: ToasterProvider
   ) {}
 
   salvar() {

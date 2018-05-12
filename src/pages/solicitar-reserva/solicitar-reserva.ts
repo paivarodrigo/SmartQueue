@@ -1,8 +1,8 @@
 import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { MenuReservaPage } from './../menu-reserva/menu-reserva';
 import { Component } from "@angular/core";
-import { NavController, AlertController, IonicPage } from "ionic-angular";
-import { Toaster } from "../../assets/utils/Toaster";
+import { NavController, IonicPage, AlertController } from "ionic-angular";
+import { ToasterProvider } from '../../providers/toaster/toaster';
 
 @IonicPage()
 @Component({
@@ -15,7 +15,7 @@ export class SolicitarReservaPage {
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public toastCtrl: Toaster
+    public toastCtrl: ToasterProvider
   ) {
     this.numeroDeAssentos = 0;
   }
@@ -33,10 +33,9 @@ export class SolicitarReservaPage {
   }
 
   solicitarReserva() {
-    if (this.numeroDeAssentos > 0) {
+    if (this.numeroDeAssentos > 0){
       // Aqui ficará a chamada da API para gerar senha e etc.
       this.tempoEstimado = "28 minutos";
-
       let confirmacao = this.alertCtrl.create({
         title: "Confirmar Solicitação",
         message:
@@ -50,7 +49,7 @@ export class SolicitarReservaPage {
           {
             text: "Não aceito",
             handler: () => {
-              this.navCtrl.push(MenuPrincipalPage.name);
+             this.navCtrl.push(MenuPrincipalPage.name);
             }
           },
           {

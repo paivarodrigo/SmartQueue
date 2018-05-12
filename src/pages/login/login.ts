@@ -1,11 +1,11 @@
-import { Session } from './../../models/session';
+import { ToasterProvider } from './../../providers/toaster/toaster';
+import { SessionProvider } from './../../providers/session/session';
 import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
-import { Toaster } from "../../assets/utils/Toaster";
 import { CadastrarUsuarioPage } from "../cadastrar-usuario/cadastrar-usuario";
 import { RecuperarSenhaUsuarioPage } from "../recuperar-senha-usuario/recuperar-senha-usuario";
 
@@ -19,9 +19,10 @@ export class LoginPage {
   public usuario: Usuario;
 
   constructor(public navCtrl: NavController, 
-    private toastCtrl: Toaster, 
+    private toastCtrl: ToasterProvider, 
     private _usuarioService: UsuarioServiceProvider,
-    private _session: Session) {
+    private _session: SessionProvider
+    ) {
 
     this.usuario = new Usuario;
   }
@@ -31,11 +32,9 @@ export class LoginPage {
         (this.usuario.email != undefined && this.usuario.email != "") &&
         (this.usuario.senha != undefined && this.usuario.senha != "")
     ){
-      
       this._usuarioService.logar(this.usuario).subscribe(
-        usuario => {
-          this.usuario = usuario;
-          this._session.create(this.usuario);
+        (response: Usuario) => {
+          this._session.create(response);
           this.navCtrl.push(MenuPrincipalPage.name);
         },
         (error: HttpErrorResponse) => {
@@ -45,14 +44,14 @@ export class LoginPage {
           );
         }
       );
-    } else{
+    } 
+    else{
       this.toastCtrl.presentSimpleToast(
             "Email e/ou senha estão incorretos.",
             "bottom"
           );
-    }
-    this.navCtrl.push(MenuPrincipalPage.name);
-    
+      this._session.remove();
+    }  
   }
 
   recuperarSenhaUsuario() {

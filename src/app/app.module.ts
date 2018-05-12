@@ -6,7 +6,8 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from "./app.component";
-import { Toaster } from "../assets/utils/Toaster";
+import { ToasterProvider } from '../providers/toaster/toaster';
+import { SessionProvider } from '../providers/session/session';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-ser
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Toaster,
+    ToasterProvider,
+    SessionProvider,
     UsuarioServiceProvider
   ]
 })

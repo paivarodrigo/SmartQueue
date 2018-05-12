@@ -1,8 +1,9 @@
+import { ToasterProvider } from './../../providers/toaster/toaster';
+import { LoginPage } from './../login/login';
 import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
 import { NavController, IonicPage } from "ionic-angular";
-import { Toaster } from "../../assets/utils/Toaster";
 import moment from "moment";
 import { CPF } from "../../assets/utils/CPF";
 import { HttpErrorResponse } from '@angular/common/http';
@@ -19,7 +20,7 @@ export class CadastrarUsuarioPage {
 
   constructor(
     public navCtrl: NavController,
-    private _toastCtrl: Toaster,
+    private _toastCtrl: ToasterProvider,
     private _usuarioService: UsuarioServiceProvider) {
       this.usuario = new Usuario;
     }
@@ -58,14 +59,14 @@ export class CadastrarUsuarioPage {
     } else {
       
       this._usuarioService.cadastrar(this.usuario).subscribe(        
-        success => {
-
+        (response) => {
           this._toastCtrl.presentSimpleToast(
             "Cadastro efetuado com sucesso!",
             "bottom"
           );
-    
-        }, (error: HttpErrorResponse) => {
+          this.navCtrl.push(LoginPage.name);
+        }, 
+        (error: HttpErrorResponse) => {
           this._toastCtrl.presentSimpleToast(
             error.error, 
             "bottom"
