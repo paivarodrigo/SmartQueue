@@ -16,39 +16,39 @@ export class HistoricoPage {
     public modalCtrl: ModalController) {}
 
   
-  ionViewDidLoad(){
-    let loading = this._loadingCtrl.create
-    ({
-      content: 'Aguarde o carregamento do histórico...'
-    });
+  // ionViewDidLoad(){
+  //   let loading = this._loadingCtrl.create
+  //   ({
+  //     content: 'Aguarde o carregamento do histórico...'
+  //   });
 
-    loading.present();
+  //   loading.present();
 
-    // this._usuarioService.historico().subscribe
-    // (
-    //   (carros) => {
-    //     this.carros = carros;
+  //   this._usuarioService.historico().subscribe
+  //   (
+  //     (response) => {
+  //       this.historico = response;
 
-    //     loading.dismiss();
-    //   },
+  //       loading.dismiss();
+  //     },
 
-    //   (erro: HttpErrorResponse) => {
-    //     console.log(erro);
+  //     (erro: HttpErrorResponse) => {
+  //       console.log(erro);
 
-    //     loading.dismiss();
+  //       loading.dismiss();
 
-    //     this._alertCtrl.create
-    //     ({
-    //         title: 'Falha na conexão.',
-    //         subTitle: 'Não foi possível carregar a lista de carros. Tente novamente mais tarde.',
-    //         buttons: 
-    //         [
-    //           {text: 'Ok'}
-    //         ]
-    //     }).present();
-    //   }
-    // );
-  }
+  //       this._alertCtrl.create
+  //       ({
+  //           title: 'Falha na conexão.',
+  //           subTitle: 'Não foi possível carregar o histórico. Tente novamente mais tarde.',
+  //           buttons: 
+  //           [
+  //             {text: 'Ok'}
+  //           ]
+  //       }).present();
+  //     }
+  //   );
+  // }
  
   public openModal(){
     var data = {message: 'testando essa caralha'}

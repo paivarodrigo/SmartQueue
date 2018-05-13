@@ -1,3 +1,4 @@
+import { SessionProvider } from './../../providers/session/session';
 import { Component } from "@angular/core";
 import { NavController, IonicPage, AlertController } from "ionic-angular";
 import { LoginPage } from "../login/login";
@@ -11,7 +12,8 @@ import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-
 })
 export class ConfiguracoesPage {
   constructor(public navCtrl: NavController,
-    public alertCtrl: AlertController) {}
+    public alertCtrl: AlertController,
+    public session: SessionProvider) {}
 
   alterarSenha() {
     this.navCtrl.push(AlterarSenhaUsuarioPage.name);
@@ -23,6 +25,21 @@ export class ConfiguracoesPage {
 
   sair() {
     
-    this.navCtrl.push(LoginPage.name);
+    this.alertCtrl.create({
+      title: "Confirmação de logout",
+      message: "Tem certeza que deseja sair?",
+      buttons:[
+        {
+          text: "Sim",
+          handler: () => {
+            this.session.remove();
+            this.navCtrl.push(LoginPage.name);
+          }
+        },
+        {
+          text: "Não"
+        }
+      ]
+    }).present();
   }
 }

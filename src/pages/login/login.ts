@@ -52,6 +52,7 @@ export class LoginPage {
           );
       this._session.remove();
     }  
+    this.navCtrl.push(MenuPrincipalPage.name);
   }
 
   recuperarSenhaUsuario() {

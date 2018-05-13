@@ -3,7 +3,7 @@
   <ion-navbar>
     <ion-title>Historico Detalhado</ion-title>
     <ion-buttons end>
-        <button ion-button (click)="closeModal()">Close</button>
+        <button ion-button clear (click)="closeModal()">Fechar</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -12,6 +12,40 @@
 
 <ion-content padding>
 
-  <ion-label>{{navParams.get('message')}}</ion-label>
+  <!-- <ion-label>{{navParams.get('message')}}</ion-label> -->
+  
+  <ion-grid>
+
+    <div class="colunas">
+      <ion-row>
+        <ion-col>
+          <p>Histórico 05/05/2018</p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="caixa">
+      <ion-row>
+        <ion-col>
+          <div class="linhas">BONELESS PARMESAN CRUSTED CHICKEN - R$10</div>
+          <div class="linhas">BATATA - R$10</div>
+          <div class="linhas">SALADA - R$10</div>
+          <div class="linhas">SORVETE - R$10</div>
+
+          <ion-row>
+              <ion-col>
+                <div class="caixa">
+                  <p>Total R$40</p>
+                  <p>Mesa x</p>
+                  <p>Qtd. pessoas: 2</p>
+                </div>
+              </ion-col>
+            </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid>
 
 </ion-content>
