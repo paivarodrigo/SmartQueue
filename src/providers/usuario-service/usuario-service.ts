@@ -8,7 +8,7 @@ export class UsuarioServiceProvider {
   constructor(private _http: HttpClient) {}
 
   cadastrar(usuario: Usuario){
-    var link = 'http://smartqserver.azurewebsites.net/api/usuarios/Criar';
+    var link = 'http://smartqueueapi.azurewebsites.net/api/usuarios/Criar';
     var jsonUsuario = JSON.stringify({Nome: usuario.nome,
                                       Sobrenome: usuario.sobrenome,
                                       DataNascimento: usuario.dataDeNascimento,
@@ -24,7 +24,7 @@ export class UsuarioServiceProvider {
 
   logar(usuario: Usuario){
 
-    var link = 'http://smartqserver.azurewebsites.net/api/usuarios/Logar';
+    var link = 'http://smartqueueapi.azurewebsites.net/api/usuarios/Logar';
     var jsonLogin = JSON.stringify({
       Email: usuario.email,
       Senha: usuario.senha
@@ -37,7 +37,7 @@ export class UsuarioServiceProvider {
   }
 
   historico(){
-    return this._http.get('http://smartqserver.azurewebsites.net/api/reservas/HistoricoUsuario/3');
+    return this._http.get('http://smartqueueapi.azurewebsites.net/api/reservas/HistoricoUsuario/3');
   }
 
 }
