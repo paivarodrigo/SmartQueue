@@ -24,7 +24,6 @@ export class ConfiguracoesPage {
   }
 
   sair() {
-    
     this.alertCtrl.create({
       title: "Confirmação de logout",
       message: "Tem certeza que deseja sair?",

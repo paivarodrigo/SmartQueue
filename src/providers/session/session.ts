@@ -24,12 +24,12 @@ export class SessionProvider {
 
     exist() {
         this.get().then(res => {
-            console.log('resultado >>> ', res);
+            //console.log('resultado >>> ', res);
             if(res) {
-                console.log('resultado IF');
+                //console.log('resultado IF');
                 return true;
             } else {
-                console.log('resultado else');
+                //console.log('resultado else');
                 return false;
             }
         });

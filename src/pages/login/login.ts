@@ -19,31 +19,34 @@ export class LoginPage {
   public usuario: Usuario;
 
   constructor(public navCtrl: NavController, 
-    private toastCtrl: ToasterProvider, 
-    private _usuarioService: UsuarioServiceProvider,
-    private _session: SessionProvider
-    ) {
-
+  private toastCtrl: ToasterProvider, 
+  private _usuarioService: UsuarioServiceProvider,
+  private _session: SessionProvider){
     this.usuario = new Usuario;
   }
   
+  ionViewDidLoad(){
+    if(this._session.exist()){
+      this.navCtrl.push(MenuPrincipalPage.name);
+    }
+  }
+
   entrar(){
-    if(
-        (this.usuario.email != undefined && this.usuario.email != "") &&
-        (this.usuario.senha != undefined && this.usuario.senha != "")
-    ){
-      this._usuarioService.logar(this.usuario).subscribe(
-        (response: Usuario) => {
-          this._session.create(response);
-          this.navCtrl.push(MenuPrincipalPage.name);
-        },
-        (error: HttpErrorResponse) => {
-          this.toastCtrl.presentSimpleToast(
-            error.error,
-            "bottom"
-          );
-        }
-      );
+    if((this.usuario.email != undefined && this.usuario.email != "") &&
+      (this.usuario.senha != undefined && this.usuario.senha != "")){
+
+        this._usuarioService.logar(this.usuario).subscribe(
+          (response: Usuario) => {
+            this._session.create(response);
+            this.navCtrl.push(MenuPrincipalPage.name);
+          },
+          (error: HttpErrorResponse) => {
+            this.toastCtrl.presentSimpleToast(
+              error.error,
+              "bottom"
+            );
+          }
+        );
     } 
     else{
       this.toastCtrl.presentSimpleToast(
@@ -52,7 +55,6 @@ export class LoginPage {
           );
       this._session.remove();
     }  
-    this.navCtrl.push(MenuPrincipalPage.name);
   }
 
   recuperarSenhaUsuario() {

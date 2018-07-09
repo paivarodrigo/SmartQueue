@@ -9,6 +9,7 @@ import { MyApp } from "./app.component";
 import { ToasterProvider } from '../providers/toaster/toaster';
 import { SessionProvider } from '../providers/session/session';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
+import { ReservaServiceProvider } from '../providers/reserva-service/reserva-service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-ser
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ToasterProvider,
     SessionProvider,
-    UsuarioServiceProvider
+    UsuarioServiceProvider,
+    ReservaServiceProvider
   ]
 })
 export class AppModule {}

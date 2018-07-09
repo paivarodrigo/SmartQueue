@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Historico } from './../../models/historico';
 import { HistoricoModalPage } from './../historico-modal/historico-modal';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { ReservaServiceProvider } from '../../providers/reserva-service/reserva-service';
 
 
 @IonicPage()
@@ -10,10 +13,41 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 })
 export class HistoricoPage {
 
+  testeHistorico: Historico[];
+  toastCtrl: any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private _loadingCtrl: LoadingController, 
-    public modalCtrl: ModalController) {}
+    private _loadingCtrl: LoadingController,
+    private _reservaService: ReservaServiceProvider,
+    public modalCtrl: ModalController) {
+      this._reservaService.conultarHistorico(13).subscribe(
+        (response: Historico[]) => {
+          this.testeHistorico = response;
+        },
+        (error: HttpErrorResponse) => {
+          this.toastCtrl.presentSimpleToast(
+            error.error,
+            "bottom"
+          );
+        }
+      );
+    //   this.testeHistorico = [{
+    //     dataReserva: '02/07/2018',
+    //     quantidadePessoas: 2,
+    //     mesa: 'Mesa redonda',
+    //     valor: 230.90,
+    //     pedidos: 'Hamburgueres, bebidas, drogas'
+    //   },
+    //   {
+    //     dataReserva: '05/07/2018',
+    //     quantidadePessoas: 2,
+    //     mesa: 'Mesa com sofá',
+    //     valor: 170.90,
+    //     pedidos: 'Drogas, bebidas, hamburguis'
+    //   }
+    // ];
+    }
 
   
   // ionViewDidLoad(){

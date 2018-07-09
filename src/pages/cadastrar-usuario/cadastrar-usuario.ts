@@ -1,3 +1,5 @@
+import { MenuPrincipalPage } from './../menu-principal/menu-principal';
+import { SessionProvider } from './../../providers/session/session';
 import { ToasterProvider } from './../../providers/toaster/toaster';
 import { LoginPage } from './../login/login';
 import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
@@ -21,7 +23,8 @@ export class CadastrarUsuarioPage {
   constructor(
     public navCtrl: NavController,
     private _toastCtrl: ToasterProvider,
-    private _usuarioService: UsuarioServiceProvider) {
+    private _usuarioService: UsuarioServiceProvider,
+    private _session: SessionProvider) {
       this.usuario = new Usuario;
     }
 
@@ -59,14 +62,16 @@ export class CadastrarUsuarioPage {
     } else {
       
       this._usuarioService.cadastrar(this.usuario).subscribe(        
-        (response) => {
+        (response: Usuario) => {
+          this._session.create(response);
           this._toastCtrl.presentSimpleToast(
             "Cadastro efetuado com sucesso!",
             "bottom"
           );
-          this.navCtrl.push(LoginPage.name);
+          this.navCtrl.push(MenuPrincipalPage.name);
         }, 
         (error: HttpErrorResponse) => {
+          this._session.remove();
           this._toastCtrl.presentSimpleToast(
             error.error, 
             "bottom"
