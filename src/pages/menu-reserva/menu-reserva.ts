@@ -2,6 +2,7 @@ import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { RankingEstabelecimentoPage } from './../ranking-estabelecimento/ranking-estabelecimento';
 import { Component } from "@angular/core";
 import { NavController, IonicPage, NavParams } from "ionic-angular";
+import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,9 @@ export class MenuReservaPage {
   rankingEstabelecimento(){
     this.navCtrl.push(RankingEstabelecimentoPage.name);
   }
-
+  
+  historico(){
+    this.navCtrl.push(HistoricoPage.name);
+  }
 }
 

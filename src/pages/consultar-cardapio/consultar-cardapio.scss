@@ -1,3 +1,18 @@
 page-consultar-cardapio {
+    .Menu {
+        overflow: auto; 
+        display: flex;
+        color: #000;
+    }
 
+    ion-chip {
+        margin: 5px !important;
+        border: 1px solid;
+        border-color: crimson;
+        color: white !important;
+        font-weight: bold !important;
+        .button {
+            color: crimson;
+        }
+    }
 }

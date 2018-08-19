@@ -10,13 +10,16 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor='let produto of produtos'>
-      <ion-thumbnail item-start>
-        <img src="{{produto.foto}}">
-      </ion-thumbnail>
-      <h3> {{produto.descricao}}</h3>
-    </ion-item>
-  </ion-list>
+
+  <div padding class="listaRanking">
+    <ion-list>
+      <ion-item style="overflow-x: auto;" *ngFor='let produto of produtos'>
+        <ion-thumbnail item-start>
+          <img [src]="'data:image/JPEG;base64,' + produto.imagem" />
+        </ion-thumbnail>
+        <h3> {{produto.nome}}</h3>
+      </ion-item>
+    </ion-list>
+  </div>
 
 </ion-content>

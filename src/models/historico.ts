@@ -1,8 +1,8 @@
 export interface Historico
 {
-    dataReserva: String;
+    dataReserva: string;
     quantidadePessoas: number;
-    mesa: String;
+    mesa: string;
     valor: number;
-    pedidos: String;
+    pedidos: string;
 }

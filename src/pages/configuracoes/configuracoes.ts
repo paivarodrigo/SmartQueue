@@ -1,7 +1,7 @@
+import { LoginPage } from './../login/login';
 import { SessionProvider } from './../../providers/session/session';
 import { Component } from "@angular/core";
 import { NavController, IonicPage, AlertController } from "ionic-angular";
-import { LoginPage } from "../login/login";
 import { SobrePage } from "../sobre/sobre";
 import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-usuario";
 
@@ -24,6 +24,7 @@ export class ConfiguracoesPage {
   }
 
   sair() {
+    let sair = false;
     this.alertCtrl.create({
       title: "Confirmação de logout",
       message: "Tem certeza que deseja sair?",
@@ -31,6 +32,7 @@ export class ConfiguracoesPage {
         {
           text: "Sim",
           handler: () => {
+            this.navCtrl.remove(0, this.navCtrl.length()-1);
             this.session.remove();
             this.navCtrl.push(LoginPage.name);
           }

@@ -8,15 +8,25 @@
 
 
 <ion-content padding>
+      
+    <div padding class="Menu">
+      <ion-chip *ngFor="let categoria of categorias" (click)="carregaProdutos(categoria)" >
+        <ion-label color="dark">{{ categoria.caracteristica }}</ion-label>
+      </ion-chip>    
+    </div>
 
-  <ion-item-group *ngFor='let categoria of categorias'>
-    <ion-item-divider color="light" >
-      <ion-icon name="{{categoria.icone}}"></ion-icon>
-      {{categoria.caracteristica}}
-    </ion-item-divider>
-    <ion-item *ngFor='let produto of produtos' (click)="sobreProdutoCardapio(produto)">
-      {{produto.descricao}}
-    </ion-item>
-  </ion-item-group>
-  
+    <div padding class="Menu">
+      <!-- <ion-item-divider color="light"> 
+        <h2>{{categoriaSelecionada.caracteristica}}</h2>
+      </ion-item-divider> -->
+      <ion-list>
+        <ion-item style="overflow-x: auto;" *ngFor='let produto of produtos' (click)="sobreProdutoCardapio(produto)">
+          <ion-thumbnail item-start>
+            <img [src]="'data:image/JPEG;base64,' + produto.imagem" />
+          </ion-thumbnail>
+          <h3> {{produto.nome}}</h3>
+        </ion-item>
+      </ion-list>
+    </div>
+
 </ion-content>

@@ -1,39 +1,53 @@
+import { Usuario } from './../../models/usuario';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../../models/usuario';
 
 
 @Injectable()
 export class SessionProvider {
 
-    constructor(public http: HttpClient,
-        public storage: Storage) {}
+    public usuario: Usuario;
 
-    create(usuario: Usuario) {
-        this.storage.set('usuario', usuario);
+    constructor(public http: HttpClient,
+        private _storage: Storage) {
+            this.usuario = new Usuario;
+            this.getUsuario();
     }
 
-    get(): Promise<any> {
-        return this.storage.get('usuario');
+    create(usuario: Usuario) {
+        this._storage.set('usuario', usuario);
     }
 
     remove() {
-        this.storage.remove('usuario');
+        this._storage.remove('usuario');
     }
 
-    exist() {
-        this.get().then(res => {
-            //console.log('resultado >>> ', res);
-            if(res) {
-                //console.log('resultado IF');
-                return true;
-            } else {
-                //console.log('resultado else');
-                return false;
-            }
-        });
+    get(): Promise<any>{
+        return this._storage.get('usuario');
     }
+
+    getUsuario() {
+        
+        this.get().then((res: Usuario) => {
+            this.usuario = res;
+          }); 
+    }
+
+    // exist(): boolean {
+
+    //     let retorno: boolean;
+
+    //     this.get().then((res:Usuario) => {
+    //         if(res) {
+    //             retorno = true;
+    //         } else {
+    //             retorno = false;
+    //         }
+    //     });
+
+    //     return retorno;
+    // }
 
 }
 

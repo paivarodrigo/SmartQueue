@@ -1,4 +1,5 @@
 export interface Categoria{
+    id: number
     caracteristica: string;
-    icone: string;
+    tamanho: string;
 }

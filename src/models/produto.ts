@@ -1,8 +1,10 @@
 export interface Produto{
     id: number;
+    nome: string;
     descricao: string;
-    receita: string;
     valor: number;
     foto: string;
+    categoriaId: number;
+    imagem: string[];
 
 }

@@ -37,7 +37,9 @@ export class UsuarioServiceProvider {
   alterarSenha(usuario: Usuario, novaSenha){
 
     var json = JSON.stringify({
-      UsuarioAtual: {Nome: usuario.nome,
+      UsuarioAtual: {
+        Id: usuario.id,
+        Nome: usuario.nome,
         Sobrenome: usuario.sobrenome,
         DataNascimento: usuario.dataDeNascimento,
         Cpf: usuario.cpf,

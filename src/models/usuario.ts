@@ -5,6 +5,7 @@ export class Model {
   }
 
 export class Usuario extends Model{
+    id: number;
     nome: String;
     sobrenome: String;
     dataDeNascimento: String;

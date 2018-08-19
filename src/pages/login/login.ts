@@ -23,12 +23,18 @@ export class LoginPage {
   private _usuarioService: UsuarioServiceProvider,
   private _session: SessionProvider){
     this.usuario = new Usuario;
+    this.verificaSessao();
   }
   
-  ionViewDidLoad(){
-    if(this._session.exist()){
-      this.navCtrl.push(MenuPrincipalPage.name);
-    }
+  verificaSessao(){
+    this._session.getUsuario();
+
+    if(this._session.usuario != null){
+      if(this._session.usuario.id != 0 && this._session.usuario.id != undefined 
+        && this._session.usuario.id != null){
+        this.navCtrl.push(MenuPrincipalPage.name);
+      }
+   }
   }
 
   entrar(){

@@ -10,6 +10,7 @@ import { ToasterProvider } from '../providers/toaster/toaster';
 import { SessionProvider } from '../providers/session/session';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 import { ReservaServiceProvider } from '../providers/reserva-service/reserva-service';
+import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReservaServiceProvider } from '../providers/reserva-service/reserva-ser
     ToasterProvider,
     SessionProvider,
     UsuarioServiceProvider,
-    ReservaServiceProvider
+    ReservaServiceProvider,
+    ProdutoServiceProvider
   ]
 })
 export class AppModule {}

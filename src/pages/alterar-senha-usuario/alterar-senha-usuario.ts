@@ -1,59 +1,63 @@
+import { MenuPrincipalPage } from './../menu-principal/menu-principal';
+import { ConfiguracoesPage } from './../configuracoes/configuracoes';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
+import { SessionProvider } from './../../providers/session/session';
 import { ToasterProvider } from './../../providers/toaster/toaster';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { Usuario } from '../../models/usuario';
 
 @IonicPage()
 @Component({
   selector: "page-alterar-senha-usuario",
   templateUrl: "alterar-senha-usuario.html"
 })
+
 export class AlterarSenhaUsuarioPage {
-  senhaAtual: any;
-  novaSenha: any;
-  confirmacaoNovaSenha: any;
-  constructor(
-    public navCtrl: NavController,
-    private toastCtrl: ToasterProvider
-  ) {}
+  public senhaAtual: any;
+  public novaSenha: any;
+  public confirmacaoNovaSenha: any;
+  
+  constructor(public navCtrl: NavController,
+  private _toastCtrl: ToasterProvider,
+  private _session: SessionProvider,
+  private _usuarioService: UsuarioServiceProvider) {}
 
   salvar() {
-    if (!validarSenhaAtual(this.senhaAtual)) {
-      this.toastCtrl.presentSimpleToast(
-        "A senha atual está incorreta",
-        "bottom"
-      );
-    } else if (!validarNovaSenha(this.novaSenha)) {
-      this.toastCtrl.presentSimpleToast(
-        "A nova senha deve ter ao menos 6 dígitos",
-        "bottom"
-      );
-    } else if (
-      !validarConfirmacaoNovaSenha(this.novaSenha, this.confirmacaoNovaSenha)
-    ) {
-      this.toastCtrl.presentSimpleToast(
-        "A senha confirmada não é igual a nova senha",
-        "bottom"
-      );
-    } else if (
-      !verificarSenhaAtualENovaSenha(this.senhaAtual, this.novaSenha)
-    ) {
-      this.toastCtrl.presentSimpleToast(
-        "A nova senha não pode ser igual a anterior",
-        "bottom"
-      );
+    
+    if (!validarNovaSenha(this.novaSenha)) {
+      this.mensagem("A nova senha deve ter ao menos 6 dígitos");
+
+    } else if (!validarConfirmacaoNovaSenha(this.novaSenha, this.confirmacaoNovaSenha)){
+      this.mensagem("A senha confirmada não é igual a nova senha");
+
+    } else if (!verificarSenhaAtualENovaSenha(this.senhaAtual, this.novaSenha)) {
+      this.mensagem("A nova senha não pode ser igual a anterior");
+
     } else {
-      // TODO: Aqui ficará toda a lógica para alterar a senha, chamadas de API e etc...
-      this.toastCtrl.presentSimpleToast(
-        "Senha alterada com sucesso",
-        "bottom"
-      );
+      this._session.getUsuario();
+      this._usuarioService.alterarSenha(this._session.usuario, this.novaSenha).subscribe(
+        (response: Usuario) => {
+          this.mensagem("Senha alterada com sucesso");
+          this._session.remove();
+          this._session.create(response);
+          this.navCtrl.push(MenuPrincipalPage.name);
+        },(error: HttpErrorResponse) => {
+          this.mensagem(error.error);
+        }
+      )
+
+      
     }
   }
-}
 
-function validarSenhaAtual(senhaAtual) {
-  // Aqui ficará a lógica de validação da senha atual
-  return true;
+  mensagem(mensagem: String){
+    this._toastCtrl.presentSimpleToast(
+      mensagem,
+      "bottom"
+    );
+  }
 }
 
 function verificarSenhaAtualENovaSenha(senhaAtual, novaSenha) {
