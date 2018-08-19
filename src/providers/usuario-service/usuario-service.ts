@@ -53,7 +53,6 @@ export class UsuarioServiceProvider {
   }
 
   sair(usuario: Usuario){
-
     return this._http.post<Usuario>((this._link + 'Sair'), this.jsonUsuario(usuario), {headers: this._headers});
   }
 

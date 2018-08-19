@@ -12,8 +12,8 @@ import { AlterarSenhaUsuarioPage } from "../alterar-senha-usuario/alterar-senha-
 })
 export class ConfiguracoesPage {
   constructor(public navCtrl: NavController,
-    public alertCtrl: AlertController,
-    public session: SessionProvider) {}
+    private _alertCtrl: AlertController,
+    private _session: SessionProvider) {}
 
   alterarSenha() {
     this.navCtrl.push(AlterarSenhaUsuarioPage.name);
@@ -24,17 +24,16 @@ export class ConfiguracoesPage {
   }
 
   sair() {
-    let sair = false;
-    this.alertCtrl.create({
+    this._alertCtrl.create({
       title: "Confirmação de logout",
       message: "Tem certeza que deseja sair?",
       buttons:[
         {
           text: "Sim",
           handler: () => {
-            this.navCtrl.remove(0, this.navCtrl.length()-1);
-            this.session.remove();
-            this.navCtrl.push(LoginPage.name);
+            this._session.clear();
+            this._session.usuarioLogado = {} as any;
+            this.navCtrl.setRoot(LoginPage.name);
           }
         },
         {

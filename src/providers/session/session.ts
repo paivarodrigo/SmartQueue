@@ -1,53 +1,41 @@
+import { Observable } from 'rxjs/Observable';
 import { Usuario } from './../../models/usuario';
 import { Storage } from '@ionic/storage';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
 @Injectable()
 export class SessionProvider {
 
-    public usuario: Usuario;
+    usuarioLogado: Usuario;
 
-    constructor(public http: HttpClient,
-        private _storage: Storage) {
-            this.usuario = new Usuario;
-            this.getUsuario();
+    constructor(private _storage: Storage) {
     }
 
-    create(usuario: Usuario) {
+    inserirUsuario(usuario: Usuario){
         this._storage.set('usuario', usuario);
     }
 
-    remove() {
-        this._storage.remove('usuario');
+    private _getUsuario(){
+
+        let promise = this._storage
+        .get('usuario')
+        .then((value: Usuario) => value)
+
+        return Observable.fromPromise(promise);
     }
 
-    get(): Promise<any>{
-        return this._storage.get('usuario');
+    verificaUsuarioLogado(){
+        this._getUsuario().subscribe(
+            (value: Usuario) => {
+                this.usuarioLogado = value;
+            }
+        )
     }
 
-    getUsuario() {
-        
-        this.get().then((res: Usuario) => {
-            this.usuario = res;
-          }); 
+    clear(){
+        this._storage.clear();
     }
-
-    // exist(): boolean {
-
-    //     let retorno: boolean;
-
-    //     this.get().then((res:Usuario) => {
-    //         if(res) {
-    //             retorno = true;
-    //         } else {
-    //             retorno = false;
-    //         }
-    //     });
-
-    //     return retorno;
-    // }
-
+    
 }
 

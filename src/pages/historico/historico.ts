@@ -1,10 +1,12 @@
+import { ToasterProvider } from './../../providers/toaster/toaster';
 import { SessionProvider } from './../../providers/session/session';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Historico } from './../../models/historico';
 import { HistoricoModalPage } from './../historico-modal/historico-modal';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ReservaServiceProvider } from '../../providers/reserva-service/reserva-service';
+import { Usuario } from '../../models/usuario';
 
 
 @IonicPage()
@@ -14,33 +16,29 @@ import { ReservaServiceProvider } from '../../providers/reserva-service/reserva-
 })
 export class HistoricoPage {
 
-  testeHistorico: Historico[];
-  toastCtrl: any;
+  historicos: Historico[];
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
-    private _loadingCtrl: LoadingController,
     private _reservaService: ReservaServiceProvider,
     private _session: SessionProvider,
-    public modalCtrl: ModalController) {
+    private _toastCtrl: ToasterProvider,
+    private _modalCtrl: ModalController) {
 
-      this._session.getUsuario();
-      this._reservaService.conultarHistorico(_session.usuario.id).subscribe(
+      this._session.verificaUsuarioLogado();
+
+      this._reservaService.conultarHistorico(this._session.usuarioLogado.id).subscribe(
         (response: Historico[]) => {
-          this.testeHistorico = response;
+          this.historicos = response;
         },
         (error: HttpErrorResponse) => {
-          this.toastCtrl.presentSimpleToast(
-            error.error,
-            "bottom"
-          );
+          this._toastCtrl.toastMessageBottom(error.error);
         }
       );
   }
  
   public openModal(){
-    var data = {message: 'testando essa caralha'}
-    var modalPage = this.modalCtrl.create(HistoricoModalPage.name, data); 
+    var data = {message: 'teste'}
+    var modalPage = this._modalCtrl.create(HistoricoModalPage.name, data); 
     modalPage.present();
   }
 

@@ -12,6 +12,9 @@ import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-ser
 import { ReservaServiceProvider } from '../providers/reserva-service/reserva-service';
 import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
 
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/mergeMap';
+
 @NgModule({
   declarations: [
     MyApp
@@ -19,7 +22,11 @@ import { ProdutoServiceProvider } from '../providers/produto-service/produto-ser
   imports: [
     BrowserModule, 
     IonicModule.forRoot(MyApp), 
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: 'SmartQueue',
+      storeName: 'session',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpClientModule  
   ],
   bootstrap: [IonicApp],

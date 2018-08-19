@@ -36,17 +36,17 @@ export class AlterarSenhaUsuarioPage {
       this.mensagem("A nova senha não pode ser igual a anterior");
 
     } else {
-      this._session.getUsuario();
-      this._usuarioService.alterarSenha(this._session.usuario, this.novaSenha).subscribe(
-        (response: Usuario) => {
-          this.mensagem("Senha alterada com sucesso");
-          this._session.remove();
-          this._session.create(response);
-          this.navCtrl.push(MenuPrincipalPage.name);
-        },(error: HttpErrorResponse) => {
-          this.mensagem(error.error);
-        }
-      )
+      // this._session.getUsuario();
+      // this._usuarioService.alterarSenha(this._session.usuario, this.novaSenha).subscribe(
+      //   (response: Usuario) => {
+      //     this.mensagem("Senha alterada com sucesso");
+      //     this._session.remove();
+      //     this._session.create(response);
+      //     this.navCtrl.push(MenuPrincipalPage.name);
+      //   },(error: HttpErrorResponse) => {
+      //     this.mensagem(error.error);
+      //   }
+      // )
 
       
     }

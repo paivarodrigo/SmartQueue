@@ -18,56 +18,48 @@ export class LoginPage {
 
   public usuario: Usuario;
 
-  constructor(public navCtrl: NavController, 
-  private toastCtrl: ToasterProvider, 
+  constructor(private _navCtrl: NavController,
   private _usuarioService: UsuarioServiceProvider,
-  private _session: SessionProvider){
-    this.usuario = new Usuario;
-    this.verificaSessao();
+  private _session: SessionProvider,
+  private _toastCtrl: ToasterProvider){
+    this.usuario = {} as any;
+  }
+
+  ionViewDidLoad(){
+    this._session.verificaUsuarioLogado();
+    if(this._session.usuarioLogado != undefined){
+      if(this._session.usuarioLogado.id != undefined && this._session.usuarioLogado.id != 0){
+        this._navCtrl.setRoot(MenuPrincipalPage.name);
+      }
+    } 
   }
   
-  verificaSessao(){
-    this._session.getUsuario();
-
-    if(this._session.usuario != null){
-      if(this._session.usuario.id != 0 && this._session.usuario.id != undefined 
-        && this._session.usuario.id != null){
-        this.navCtrl.push(MenuPrincipalPage.name);
-      }
-   }
-  }
-
   entrar(){
+
     if((this.usuario.email != undefined && this.usuario.email != "") &&
       (this.usuario.senha != undefined && this.usuario.senha != "")){
 
         this._usuarioService.logar(this.usuario).subscribe(
           (response: Usuario) => {
-            this._session.create(response);
-            this.navCtrl.push(MenuPrincipalPage.name);
+            this._session.inserirUsuario(response);
+            this._navCtrl.setRoot(MenuPrincipalPage.name);
           },
           (error: HttpErrorResponse) => {
-            this.toastCtrl.presentSimpleToast(
-              error.error,
-              "bottom"
-            );
+            this._toastCtrl.toastMessageBottom(error.error);
           }
         );
     } 
     else{
-      this.toastCtrl.presentSimpleToast(
-            "Email e/ou senha estão incorretos.",
-            "bottom"
-          );
-      this._session.remove();
+      this._session.clear();
+      this._toastCtrl.toastMessageBottom("Email e/ou senha estão incorretos."); 
     }  
   }
 
   recuperarSenhaUsuario() {
-    this.navCtrl.push(RecuperarSenhaUsuarioPage.name);
+    this._navCtrl.push(RecuperarSenhaUsuarioPage.name);
   }
 
   cadastrarUsuario() {
-    this.navCtrl.push(CadastrarUsuarioPage.name);
+    this._navCtrl.push(CadastrarUsuarioPage.name);
   }
 }

@@ -15,17 +15,11 @@ import { SolicitarReservaPage } from "../solicitar-reserva/solicitar-reserva";
 })
 export class MenuPrincipalPage{
 
-  usuarioLogado: Usuario;
   constructor(public navCtrl: NavController,
-    private _session: SessionProvider) {}
+    private _session: SessionProvider) {
+      this._session.verificaUsuarioLogado();
+    }
   
-  ionViewDidLoad(){
-    this._session.get().then(
-      usuario => {
-          this.usuarioLogado = new Usuario(usuario);
-          console.log('GET USUARIO >>> ',usuario);
-      });
-
       // console.log("EXIST USUARIO >>>", this._session.exist());
 
       // this._session.remove();
@@ -33,11 +27,7 @@ export class MenuPrincipalPage{
       // this._session.get().then(
       //   usuario => {
       //     this.usuarioLogado = new Usuario(usuario);
-      //     console.log('GET USUARIO DEPOIS DE REMOVER  >>> ',usuario);
       // });
-
-      // console.log("EXIST DEPOIS DE REMOVER >>>",this._session.exist());
-  }
 
   solicitarReserva() {
     this.navCtrl.push(SolicitarReservaPage.name);

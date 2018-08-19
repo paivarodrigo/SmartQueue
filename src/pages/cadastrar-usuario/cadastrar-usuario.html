@@ -11,28 +11,28 @@
       <div class="cadastrar-usuario-form">
           <form>
               <ion-item>
-                  <ion-input [value]="usuario.nome" [(ngModel)]="usuario.nome" type="text" name="nome" placeholder="Nome"></ion-input>
+                  <ion-input [(ngModel)]="usuario.nome" type="text" name="nome" placeholder="Nome"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.sobrenome" [(ngModel)]="usuario.sobrenome" type="text" name="sobrenome" placeholder="Sobrenome"></ion-input>
+                  <ion-input [(ngModel)]="usuario.sobrenome" type="text" name="sobrenome" placeholder="Sobrenome"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.dataDeNascimento" [(ngModel)]="usuario.dataDeNascimento" type="date" name="dataDeNascimento" placeholder="Data de Nascimento"></ion-input>
+                  <ion-input [(ngModel)]="usuario.dataDeNascimento" type="date" name="dataDeNascimento" placeholder="Data de Nascimento"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.cpf" [(ngModel)]="usuario.cpf" type="text" name="cpf" placeholder="CPF"></ion-input>
+                  <ion-input [(ngModel)]="usuario.cpf" type="text" name="cpf" placeholder="CPF"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.email" [(ngModel)]="usuario.email" type="email" name="email" placeholder="E-mail"></ion-input>
+                  <ion-input [(ngModel)]="usuario.email" type="email" name="email" placeholder="E-mail"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.cidadeNatal" [(ngModel)]="usuario.cidadeNatal" type="text" name="cidadeNatal" placeholder="Cidade Natal (Opcional)"></ion-input>
+                  <ion-input [(ngModel)]="usuario.cidadeNatal" type="text" name="cidadeNatal" placeholder="Cidade Natal (Opcional)"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="usuario.senha" [(ngModel)]="usuario.senha" type="password" name="senha" placeholder="Senha"></ion-input>
+                  <ion-input [(ngModel)]="usuario.senha" type="password" name="senha" placeholder="Senha"></ion-input>
               </ion-item>
               <ion-item>
-                  <ion-input [value]="confirmacaoSenha" [(ngModel)]="confirmacaoSenha" type="password" name="confirmacaoSenha" placeholder="Confirmar Senha"></ion-input>
+                  <ion-input [(ngModel)]="confirmacaoSenha" type="password" name="confirmacaoSenha" placeholder="Confirmar Senha"></ion-input>
               </ion-item>
               <button ion-button class="botao-cadastrar" color="positive" block (click)="cadastrarUsuario()">
                   Cadastrar

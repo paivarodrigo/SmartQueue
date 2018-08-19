@@ -1,7 +1,6 @@
-import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { SessionProvider } from './../../providers/session/session';
+import { MenuPrincipalPage } from './../menu-principal/menu-principal';
 import { ToasterProvider } from './../../providers/toaster/toaster';
-import { LoginPage } from './../login/login';
 import { UsuarioServiceProvider } from './../../providers/usuario-service/usuario-service';
 import { Usuario } from './../../models/usuario';
 import { Component } from "@angular/core";
@@ -15,71 +14,63 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: "page-cadastrar-usuario",
   templateUrl: "cadastrar-usuario.html"
 })
+
 export class CadastrarUsuarioPage {
 
   public usuario: Usuario;
   public confirmacaoSenha: any;
 
   constructor(
-    public navCtrl: NavController,
-    private _toastCtrl: ToasterProvider,
+    private _navCtrl: NavController,
     private _usuarioService: UsuarioServiceProvider,
-    private _session: SessionProvider) {
-      this.usuario = new Usuario;
+    private _session: SessionProvider,
+    private _toastCtrl: ToasterProvider) {
+      this.usuario = {} as any;
     }
 
 
   cadastrarUsuario() {
     if (!validarNome(this.usuario.nome)) {
-      this._toastCtrl.presentSimpleToast("O campo Nome é obrigatório.", "bottom");
+      this._toastCtrl.toastMessageBottom("O campo Nome é obrigatório.");
+
     } else if (!validarSobrenome(this.usuario.sobrenome)) {
-      this._toastCtrl.presentSimpleToast(
-        "O campo Sobrenome é obrigatório.",
-        "bottom"
-      );
+      this._toastCtrl.toastMessageBottom("O campo Sobrenome é obrigatório.");
+
     } else if (!validarDataDeNascimento(this.usuario.dataDeNascimento)) {
-      this._toastCtrl.presentSimpleToast(
-        "O campo Data de Nascimento é obrigatório.",
-        "bottom"
-      );
+      this._toastCtrl.toastMessageBottom("O campo Data de Nascimento é obrigatório.");
+
     } else if (!validarCpf(this.usuario.cpf)) {
-      this._toastCtrl.presentSimpleToast("O CPF informado é inválido.", "bottom");
+      this._toastCtrl.toastMessageBottom("O CPF informado é inválido.");
+
     } else if (!validarEmail(this.usuario.email)) {
-      this._toastCtrl.presentSimpleToast(
-        "O email informado é inválido.",
-        "bottom"
-      );
+      this._toastCtrl.toastMessageBottom("O email informado é inválido.");
+
     } else if (!validarSenha(this.usuario.senha)) {
-      this._toastCtrl.presentSimpleToast(
-        "A senha deve ter ao menos 6 dígitos.",
-        "bottom"
-      );
+      this._toastCtrl.toastMessageBottom("A senha deve ter ao menos 6 dígitos.");
+
     } else if (!validarConfirmacaoSenha(this.usuario.senha, this.confirmacaoSenha)) {
-      this._toastCtrl.presentSimpleToast(
-        "A senha confirmada não é igual a senha requerida.",
-        "bottom"
-      );
+      this._toastCtrl.toastMessageBottom("A senha confirmada não é igual a senha requerida.");
+
     } else {
-      
-      this._usuarioService.cadastrar(this.usuario).subscribe(        
-        (response: Usuario) => {
-          this._session.create(response);
-          this._toastCtrl.presentSimpleToast(
-            "Cadastro efetuado com sucesso!",
-            "bottom"
-          );
-          this.navCtrl.push(MenuPrincipalPage.name);
-        }, 
-        (error: HttpErrorResponse) => {
-          this._session.remove();
-          this._toastCtrl.presentSimpleToast(
-            error.error, 
-            "bottom"
-          );
-        }
-      );    
+      this.inserirUsuario();
     }
   }
+
+  private inserirUsuario(){
+
+    this._usuarioService.cadastrar(this.usuario).subscribe(        
+      (response: Usuario) => {
+        this._session.inserirUsuario(response);
+        this._toastCtrl.toastMessageBottom("Cadastro efetuado com sucesso!");
+        this._navCtrl.setRoot(MenuPrincipalPage.name);
+      }, 
+      (error: HttpErrorResponse) => {
+        this._session.clear();
+        this._toastCtrl.toastMessageBottom(error.error);
+      }
+    );
+  }
+
 }
 
 function validarNome(nome) {

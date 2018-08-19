@@ -25,4 +25,8 @@ export class ToasterProvider {
     toast.present();
   }
 
+  toastMessageBottom(message){
+    this.presentSimpleToast(message, "bottom");
+  }
+
 }

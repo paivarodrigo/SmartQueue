@@ -11,10 +11,10 @@
   
   <!-- <button ion-button (click)="openModal()">Open Modal</button> -->
 
-  <ion-item-group *ngFor="let historico of testeHistorico" >
+  <ion-item-group *ngFor="let historico of historicos" >
     <ion-item-divider color="light"> 
       <ion-icon name="calendar" item-start></ion-icon>
-      <h2>{{historico.dataReserva}}</h2>
+      <h2>{{historico.dataReserva.substr(0, 10)}}</h2>
     </ion-item-divider>
     <ion-item>
       <ion-label>
